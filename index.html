@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OceanicVibes Freediving | AIDA Courses in Cancun</title>
+    <meta name="description" content="Professional freediving instruction, AIDA courses, and training in Cancun and the Riviera Maya with OceanicVibes.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS VARIABLES FOR BRAND COLORS */
+        :root {
+            --primary-blue: #0b5d9e;
+            --teal: #008b8b;
+            --dark-bg: #0a1118;
+            --light-bg: #f4f7f6;
+            --orange-accent: #f28500;
+        }
+
+        /* GLOBAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        header {
+            background-color: #ffffff;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container img {
+            height: 60px; /* Adjust based on your logo crop */
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            font-weight: 600;
+            color: var(--primary-blue);
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--orange-accent);
+        }
+
+        /* HERO SECTION */
+        #hero {
+            height: 90vh;
+            background: linear-gradient(rgba(10, 17, 24, 0.4), rgba(10, 17, 24, 0.7)), url('images/hero.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .btn {
+            padding: 15px 30px;
+            background-color: var(--teal);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: var(--orange-accent);
+        }
+
+        /* ABOUT SECTION */
+        #about {
+            display: flex;
+            padding: 80px 5%;
+            background-color: white;
+            align-items: center;
+            gap: 50px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        .about-image {
+            flex: 1;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* COURSES & SCHEDULE SECTION */
+        #courses {
+            padding: 80px 5%;
+            background-color: var(--dark-bg);
+            color: white;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--teal);
+        }
+
+        /* The grid where Make.com will inject courses */
+        #course-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Style for the individual course cards */
+        .course-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--teal);
+        }
+        .course-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .course-content {
+            padding: 20px;
+        }
+        .course-content h3 {
+            color: var(--orange-accent);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .course-date {
+            font-weight: bold;
+            color: #ddd;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #05080c;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        footer p {
+            margin-bottom: 10px;
+            color: #888;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.2rem; }
+            #about { flex-direction: column; }
+            nav ul { display: none; /* Can add a hamburger menu later */ }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <div class="logo-container">
+            <a href="#">
+                <!-- Ensure this matches your logo file name -->
+                <img src="images/logo.jpg" alt="OceanicVibes Freediving Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses & Dates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1>Discover Your Depth</h1>
+            <p>Professional AIDA Freediving Courses in Cancun & The Riviera Maya</p>
+            <a href="#courses" class="btn">View Upcoming Courses</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="about-text">
+            <h2>Awaken Your Aquatic Potential</h2>
+            <p>Welcome to OceanicVibes. Whether you are taking your very first breath-hold or looking to dive deeper than ever before, our training methodology combines deep relaxation techniques with elite-level safety standards.</p>
+            <br>
+            <p>Based in the beautiful waters of Cancun and the mystical Cenotes, we offer a unique environment to explore the underwater world on a single breath.</p>
+        </div>
+        <div class="about-image">
+            <img src="images/about.jpg" alt="Freediving instructor focusing before a dive">
+        </div>
+    </section>
+
+    <!-- COURSES & SCHEDULE SECTION (The Automation Hub) -->
+    <section id="courses">
+        <div class="section-header">
+            <h2>Upcoming Courses & Training</h2>
+            <p>Find our latest AIDA certification dates and training camps below.</p>
+        </div>
+
+        <div id="course-schedule">
+            <!-- 
+            ======================================================================
+            MAKE.COM WILL INSERT NEW HTML POSTS HERE IN THE FUTURE.
+            For now, here is a static placeholder so you can see how it looks!
+            ====================================================================== 
+            -->
+            
+            <article class="course-card">
+                <img src="images/course.jpg" alt="Freediver on the line in a cenote">
+                <div class="course-content">
+                    <h3>AIDA 2 Certification</h3>
+                    <span class="course-date">📍 Cenote Casa Cenote | Oct 15 - 17</span>
+                    <p>Learn the fundamentals of freediving, relaxation techniques, and how to safely dive up to 20 meters. Perfect for beginners!</p>
+                </div>
+            </article>
+
+            <!-- Example of a second hardcoded course -->
+            <article class="course-card">
+                <img src="images/course.jpg" alt="Freediving depth training">
+                <div class="course-content">
+                    <h3>Deep Training Camp</h3>
+                    <span class="course-date">📍 Playa del Carmen | Nov 02 - 05</span>
+                    <p>Advanced line training focusing on Free Immersion (FIM) and Constant Weight (CWT). Limited spots available.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact">
+        <h3>OceanicVibes Freediving</h3>
+        <p>Cancun, Quintana Roo, Mexico</p>
+        <p>Email: info@oceanicvibes.com | IG: @OceanicVibes</p>
+        <br>
+        <p>&copy; 2026 OceanicVibes. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
