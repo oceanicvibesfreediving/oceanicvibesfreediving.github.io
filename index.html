@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OceanicVibes Freediving | AIDA Courses in Cancun</title>
-    <meta name="description" content="Professional freediving instruction, AIDA courses, and training in Cancun and the Riviera Maya with OceanicVibes.">
+    <title>OceanicVibes Freediving | Elite Depth Training in Riviera Maya</title>
+    <meta name="description" content="Professional freediving instruction, advanced equalization, and depth training in Playa del Carmen, Riviera Maya, and Bacalar.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS VARIABLES FOR BRAND COLORS */
+        /* PRO CINEMATIC DARK THEME VARIABLES */
         :root {
+            --bg-deep: #03080c;      /* Very dark, almost black blue */
+            --bg-surface: #0a141d;   /* Slightly lighter dark for cards */
             --primary-blue: #0b5d9e;
             --teal: #008b8b;
-            --dark-bg: #0a1118;
-            --light-bg: #f4f7f6;
-            --orange-accent: #f28500;
+            --accent-orange: #f28500;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
         }
 
         /* GLOBAL STYLES */
@@ -29,182 +31,251 @@
             font-family: 'Montserrat', sans-serif;
         }
         body {
-            background-color: var(--light-bg);
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
         a {
             text-decoration: none;
             color: inherit;
         }
+        h1, h2, h3 {
+            letter-spacing: 1px;
+        }
 
         /* NAVBAR */
         header {
-            background-color: #ffffff;
-            padding: 10px 5%;
+            background-color: rgba(3, 8, 12, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         .logo-container img {
-            height: 60px; /* Adjust based on your logo crop */
+            height: 100px; /* MADE LOGO MUCH BIGGER */
+            display: block;
         }
         nav ul {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 40px;
         }
         nav a {
-            font-weight: 600;
-            color: var(--primary-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: var(--text-main);
             transition: color 0.3s ease;
         }
         nav a:hover {
-            color: var(--orange-accent);
+            color: var(--teal);
         }
 
         /* HERO SECTION */
         #hero {
-            height: 90vh;
-            background: linear-gradient(rgba(10, 17, 24, 0.4), rgba(10, 17, 24, 0.7)), url('images/hero.jpg') center/cover no-repeat;
+            height: 100vh;
+            /* Gradient fades to dark at bottom to blend with next section. Position center 30% keeps diver's head visible */
+            background: linear-gradient(to bottom, rgba(3,8,12,0.2) 60%, var(--bg-deep) 100%), 
+                        url('images/hero.jpg') center 20% / cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
             padding: 0 20px;
+            margin-top: 0;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin-top: 80px; /* Offset for fixed header */
         }
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 20px;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
         .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
             font-weight: 300;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
         .btn {
-            padding: 15px 30px;
-            background-color: var(--teal);
-            color: white;
-            font-size: 1.1rem;
+            padding: 16px 40px;
+            background-color: transparent;
+            border: 1px solid var(--teal);
+            color: var(--teal);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 600;
-            border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.4s ease;
             display: inline-block;
         }
         .btn:hover {
-            background-color: var(--orange-accent);
+            background-color: var(--teal);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 139, 139, 0.4);
         }
 
-        /* ABOUT SECTION */
+        /* ABOUT / PHILOSOPHY SECTION */
         #about {
             display: flex;
-            padding: 80px 5%;
-            background-color: white;
+            padding: 100px 5%;
             align-items: center;
-            gap: 50px;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         .about-text {
-            flex: 1;
+            flex: 1.2;
         }
         .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
+            font-size: 2.8rem;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .accent-text {
+            color: var(--accent-orange);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
             margin-bottom: 20px;
+            font-weight: 300;
         }
         .about-image {
             flex: 1;
         }
         .about-image img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            /* Prevents the extreme close up from being squished */
+            object-fit: contain; 
+            filter: grayscale(20%) contrast(110%);
         }
 
         /* COURSES & SCHEDULE SECTION */
         #courses {
-            padding: 80px 5%;
-            background-color: var(--dark-bg);
-            color: white;
+            padding: 100px 5%;
+            background-color: var(--bg-surface);
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--teal);
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* The grid where Make.com will inject courses */
+        /* Grid for Courses */
         #course-schedule {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* Style for the individual course cards */
+        /* Refined Pro Course Cards */
         .course-card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
+            background-color: var(--bg-deep);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
         }
         .course-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--teal);
+            transform: translateY(-10px);
+            border-color: rgba(0, 139, 139, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
         .course-card img {
             width: 100%;
-            height: 250px;
+            height: 400px; /* Taller image to show full diver */
             object-fit: cover;
+            object-position: center top; /* Keeps focus on the ascending diver */
         }
         .course-content {
-            padding: 20px;
+            padding: 30px;
         }
         .course-content h3 {
-            color: var(--orange-accent);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #fff;
         }
         .course-date {
-            font-weight: bold;
-            color: #ddd;
+            color: var(--teal);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
             margin-bottom: 15px;
-            font-size: 0.9rem;
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 5px 10px;
-            border-radius: 3px;
+            font-weight: 600;
+        }
+        .course-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
         }
 
         /* FOOTER */
         footer {
-            background-color: #05080c;
-            color: white;
+            background-color: #010305;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
         }
         footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
             margin-bottom: 10px;
-            color: #888;
+        }
+        .social-link {
+            color: var(--teal);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .social-link:hover {
+            color: var(--accent-orange);
         }
 
         /* MOBILE RESPONSIVENESS */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content p { font-size: 1.2rem; }
-            #about { flex-direction: column; }
-            nav ul { display: none; /* Can add a hamburger menu later */ }
+        @media (max-width: 900px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            #about { flex-direction: column; text-align: center; }
+            .logo-container img { height: 75px; }
+            nav ul { display: none; }
         }
     </style>
 </head>
@@ -214,14 +285,13 @@
     <header>
         <div class="logo-container">
             <a href="#">
-                <!-- Ensure this matches your logo file name -->
                 <img src="images/logo.jpg" alt="OceanicVibes Freediving Logo">
             </a>
         </div>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#courses">Courses & Dates</a></li>
+                <li><a href="#about">Philosophy</a></li>
+                <li><a href="#courses">Training & Dates</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -230,56 +300,56 @@
     <!-- HERO SECTION -->
     <section id="hero">
         <div class="hero-content">
-            <h1>Discover Your Depth</h1>
-            <p>Professional AIDA Freediving Courses in Cancun & The Riviera Maya</p>
-            <a href="#courses" class="btn">View Upcoming Courses</a>
+            <h1>Master Your Depth</h1>
+            <p>Elite Freediving Instruction, Equalization & Depth Training based in Playa del Carmen, Riviera Maya & Bacalar.</p>
+            <a href="#courses" class="btn">View Training Schedule</a>
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section id="about">
         <div class="about-text">
-            <h2>Awaken Your Aquatic Potential</h2>
-            <p>Welcome to OceanicVibes. Whether you are taking your very first breath-hold or looking to dive deeper than ever before, our training methodology combines deep relaxation techniques with elite-level safety standards.</p>
-            <br>
-            <p>Based in the beautiful waters of Cancun and the mystical Cenotes, we offer a unique environment to explore the underwater world on a single breath.</p>
+            <span class="accent-text">Professional Instruction</span>
+            <h2>This is not a snorkeling tour.</h2>
+            <p>At OceanicVibes, we train athletes, watermen, and dedicated beginners to safely and comfortably unlock their true aquatic potential. We specialize in advanced depth progression and professional AIDA certification.</p>
+            <p>Whether you are mastering the Frenzel maneuver, working on Mouthfill equalization for deep dives, or overcoming mental barriers through deep relaxation and CO2 tolerance training, our methodology ensures elite-level safety and measurable progression.</p>
+            <p>We utilize the unparalleled conditions of the Riviera Maya—from the endless blue off the coast of Playa del Carmen to the crystal-clear, mystical depths of dozens of surrounding Cenotes, and the stunning waters of Bacalar.</p>
         </div>
         <div class="about-image">
-            <img src="images/about.jpg" alt="Freediving instructor focusing before a dive">
+            <img src="images/about.jpg" alt="Freediver focusing on relaxation before a deep dive">
         </div>
     </section>
 
-    <!-- COURSES & SCHEDULE SECTION (The Automation Hub) -->
+    <!-- COURSES & SCHEDULE SECTION -->
     <section id="courses">
         <div class="section-header">
-            <h2>Upcoming Courses & Training</h2>
-            <p>Find our latest AIDA certification dates and training camps below.</p>
+            <span class="accent-text">Current Schedule</span>
+            <h2>Upcoming Training & Courses</h2>
+            <p>Secure your spot in our upcoming AIDA certification courses and specialized depth training camps.</p>
         </div>
 
         <div id="course-schedule">
             <!-- 
             ======================================================================
             MAKE.COM WILL INSERT NEW HTML POSTS HERE IN THE FUTURE.
-            For now, here is a static placeholder so you can see how it looks!
             ====================================================================== 
             -->
             
             <article class="course-card">
-                <img src="images/course.jpg" alt="Freediver on the line in a cenote">
+                <img src="images/course.jpg" alt="Freediver ascending the line in a cenote">
                 <div class="course-content">
-                    <h3>AIDA 2 Certification</h3>
-                    <span class="course-date">📍 Cenote Casa Cenote | Oct 15 - 17</span>
-                    <p>Learn the fundamentals of freediving, relaxation techniques, and how to safely dive up to 20 meters. Perfect for beginners!</p>
+                    <h3>AIDA 2 Foundation Course</h3>
+                    <span class="course-date">📍 Playa del Carmen & Cenotes | Oct 15 - 17</span>
+                    <p>Build a bulletproof foundation. Focus on Frenzel equalization, duck dives, breathing techniques, and safety protocols up to 20 meters.</p>
                 </div>
             </article>
 
-            <!-- Example of a second hardcoded course -->
             <article class="course-card">
-                <img src="images/course.jpg" alt="Freediving depth training">
+                <img src="images/course.jpg" alt="Deep freediving line training">
                 <div class="course-content">
-                    <h3>Deep Training Camp</h3>
-                    <span class="course-date">📍 Playa del Carmen | Nov 02 - 05</span>
-                    <p>Advanced line training focusing on Free Immersion (FIM) and Constant Weight (CWT). Limited spots available.</p>
+                    <h3>Advanced Depth & Equalization</h3>
+                    <span class="course-date">📍 Riviera Maya Cenotes | Nov 02 - 05</span>
+                    <p>Advanced line training focusing on Free Immersion (FIM), Constant Weight (CWT), and overcoming depth barriers through advanced equalization techniques.</p>
                 </div>
             </article>
 
@@ -289,10 +359,11 @@
     <!-- FOOTER / CONTACT -->
     <footer id="contact">
         <h3>OceanicVibes Freediving</h3>
-        <p>Cancun, Quintana Roo, Mexico</p>
-        <p>Email: info@oceanicvibes.com | IG: @OceanicVibes</p>
+        <p>Playa del Carmen | Riviera Maya | Bacalar</p>
+        <p>Email: train@oceanicvibes.com</p>
+        <p>Instagram: <a href="https://instagram.com/oceanic__vibesfreediving" target="_blank" class="social-link">@oceanic__vibesfreediving</a></p>
         <br>
-        <p>&copy; 2026 OceanicVibes. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 OceanicVibes. All Rights Reserved.</p>
     </footer>
 
 </body>
