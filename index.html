@@ -14,8 +14,8 @@
     <style>
         /* PRO CINEMATIC DARK THEME VARIABLES */
         :root {
-            --bg-deep: #03080c;      /* Very dark, almost black blue */
-            --bg-surface: #0a141d;   /* Slightly lighter dark for cards */
+            --bg-deep: #03080c;      
+            --bg-surface: #0a141d;   
             --primary-blue: #0b5d9e;
             --teal: #008b8b;
             --accent-orange: #f28500;
@@ -60,7 +60,7 @@
             transition: all 0.3s ease;
         }
         .logo-container img {
-            height: 100px; /* MADE LOGO MUCH BIGGER */
+            height: 100px; 
             display: block;
         }
         nav ul {
@@ -83,7 +83,6 @@
         /* HERO SECTION */
         #hero {
             height: 100vh;
-            /* Gradient fades to dark at bottom to blend with next section. Position center 30% keeps diver's head visible */
             background: linear-gradient(to bottom, rgba(3,8,12,0.2) 60%, var(--bg-deep) 100%), 
                         url('images/hero.jpg') center 20% / cover no-repeat;
             display: flex;
@@ -95,7 +94,7 @@
         }
         .hero-content {
             max-width: 900px;
-            margin-top: 80px; /* Offset for fixed header */
+            margin-top: 80px; 
         }
         .hero-content h1 {
             font-size: 4.5rem;
@@ -169,7 +168,6 @@
         .about-image img {
             width: 100%;
             border-radius: 4px;
-            /* Prevents the extreme close up from being squished */
             object-fit: contain; 
             filter: grayscale(20%) contrast(110%);
         }
@@ -217,9 +215,8 @@
         }
         .course-card img {
             width: 100%;
-            height: 400px; /* Taller image to show full diver */
+            height: 450px; /* Increased height to show more of the diver */
             object-fit: cover;
-            object-position: center top; /* Keeps focus on the ascending diver */
         }
         .course-content {
             padding: 30px;
@@ -310,8 +307,9 @@
     <section id="about">
         <div class="about-text">
             <span class="accent-text">Professional Instruction</span>
-            <h2>This is not a snorkeling tour.</h2>
-            <p>At OceanicVibes, we train athletes, watermen, and dedicated beginners to safely and comfortably unlock their true aquatic potential. We specialize in advanced depth progression and professional AIDA certification.</p>
+            <!-- NEW HIGH-END ATHLETE FOCUSED HEADING -->
+            <h2>Elite Training for the Dedicated Athlete.</h2>
+            <p>At OceanicVibes, we train athletes, watermen, and dedicated individuals to safely and comfortably unlock their true aquatic potential. We specialize in advanced depth progression and professional AIDA certification.</p>
             <p>Whether you are mastering the Frenzel maneuver, working on Mouthfill equalization for deep dives, or overcoming mental barriers through deep relaxation and CO2 tolerance training, our methodology ensures elite-level safety and measurable progression.</p>
             <p>We utilize the unparalleled conditions of the Riviera Maya—from the endless blue off the coast of Playa del Carmen to the crystal-clear, mystical depths of dozens of surrounding Cenotes, and the stunning waters of Bacalar.</p>
         </div>
@@ -336,7 +334,8 @@
             -->
             
             <article class="course-card">
-                <img src="images/course.jpg" alt="Freediver ascending the line in a cenote">
+                <!-- Added inline object-position to force the crop to target the diver in the lower half of the photo -->
+                <img src="images/course.jpg" alt="Freediver ascending the line in a cenote" style="object-position: center 65%;">
                 <div class="course-content">
                     <h3>AIDA 2 Foundation Course</h3>
                     <span class="course-date">📍 Playa del Carmen & Cenotes | Oct 15 - 17</span>
@@ -345,7 +344,8 @@
             </article>
 
             <article class="course-card">
-                <img src="images/course.jpg" alt="Deep freediving line training">
+                <!-- Reused the hero image for the second card, focusing on the upper half of the body -->
+                <img src="images/hero.jpg" alt="Deep freediving line training" style="object-position: center 30%;">
                 <div class="course-content">
                     <h3>Advanced Depth & Equalization</h3>
                     <span class="course-date">📍 Riviera Maya Cenotes | Nov 02 - 05</span>
