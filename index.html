@@ -3,286 +3,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OceanicVibes Freediving | Elite Depth Training in Riviera Maya</title>
-    <meta name="description" content="Professional freediving instruction, advanced equalization, and depth training in Playa del Carmen, Riviera Maya, and Bacalar.">
+    <title>OceanicVibes | Elite Freediving & Depth Training</title>
+    <meta name="description" content="Elite freediving instruction, advanced equalization, and depth training in Playa del Carmen and the Riviera Maya.">
     
-    <!-- Google Fonts -->
+    <!-- Premium Font Combination: Cormorant Garamond (Elegant Serif) & Montserrat (Clean Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* PRO CINEMATIC DARK THEME VARIABLES */
+        /* LUXURY DARK THEME VARIABLES */
         :root {
-            --bg-deep: #03080c;      
-            --bg-surface: #0a141d;   
-            --primary-blue: #0b5d9e;
-            --teal: #008b8b;
-            --accent-orange: #f28500;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
+            --bg-black: #020406;      /* Pitch black with a hint of deep sea */
+            --bg-offblack: #0a0d11;   
+            --accent-teal: #00b4b4;   /* Vibrant but sophisticated teal */
+            --text-white: #f8f9fa;
+            --text-grey: #8a96a3;
         }
 
-        /* GLOBAL STYLES */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        h1, h2, h3 {
-            letter-spacing: 1px;
         }
 
-        /* NAVBAR */
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+        
+        .eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-teal);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* SLEEK FLOATING HEADER (Accommodates JPG Logo) */
         header {
-            background-color: rgba(3, 8, 12, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1400px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 10px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        
         .logo-container img {
-            height: 100px; 
+            height: 70px;
             display: block;
+            mix-blend-mode: multiply; /* Blends any slight off-white edges */
         }
+
         nav ul {
             list-style: none;
             display: flex;
             gap: 40px;
         }
+        
         nav a {
-            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 500;
-            color: var(--text-main);
-            transition: color 0.3s ease;
+            color: #111;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.4s;
         }
-        nav a:hover {
-            color: var(--teal);
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-teal);
+            transition: width 0.4s ease;
         }
 
-        /* HERO SECTION */
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* CINEMATIC HERO SECTION */
         #hero {
             height: 100vh;
-            background: linear-gradient(to bottom, rgba(3,8,12,0.2) 60%, var(--bg-deep) 100%), 
-                        url('images/hero.jpg') center 20% / cover no-repeat;
+            /* Parallax Effect (background-attachment: fixed) */
+            background-image: url('images/hero.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 0 20px;
-            margin-top: 0;
-        }
-        .hero-content {
-            max-width: 900px;
-            margin-top: 80px; 
-        }
-        .hero-content h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-        .btn {
-            padding: 16px 40px;
-            background-color: transparent;
-            border: 1px solid var(--teal);
-            color: var(--teal);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            display: inline-block;
-        }
-        .btn:hover {
-            background-color: var(--teal);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(0, 139, 139, 0.4);
+            position: relative;
         }
 
-        /* ABOUT / PHILOSOPHY SECTION */
-        #about {
-            display: flex;
-            padding: 100px 5%;
-            align-items: center;
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto;
+        /* Dark gradient overlay so text is perfectly readable */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(2,4,6,0.3) 0%, rgba(2,4,6,0.8) 80%, var(--bg-black) 100%);
         }
-        .about-text {
-            flex: 1.2;
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+            margin-top: 50px;
         }
-        .about-text h2 {
-            font-size: 2.8rem;
-            color: var(--text-main);
-            margin-bottom: 25px;
-            font-weight: 600;
+
+        .hero-content h1 {
+            font-size: 6rem;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: capitalize;
         }
-        .accent-text {
-            color: var(--accent-orange);
-            font-size: 0.9rem;
+
+        .hero-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: #d1d8e0;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        /* MINIMALIST BUTTON */
+        .btn {
+            display: inline-block;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 18px 45px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
         }
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-weight: 300;
+        
+        .btn:hover {
+            border-color: var(--accent-teal);
+            background-color: var(--accent-teal);
+            color: #fff;
         }
+
+        /* ASYMMETRICAL ABOUT SECTION */
+        #about {
+            padding: 150px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 100px;
+        }
+
         .about-image {
             flex: 1;
+            position: relative;
         }
+
         .about-image img {
             width: 100%;
-            border-radius: 4px;
-            object-fit: contain; 
-            filter: grayscale(20%) contrast(110%);
+            height: 700px;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(40%) contrast(110%);
         }
 
-        /* COURSES & SCHEDULE SECTION */
-        #courses {
-            padding: 100px 5%;
-            background-color: var(--bg-surface);
-            border-top: 1px solid rgba(255,255,255,0.05);
+        /* Decorative thin line behind image */
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: -1;
         }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 40px;
+        }
+
+        .about-text p {
+            color: var(--text-grey);
+            font-weight: 300;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        /* EDITORIAL COURSE CARDS (NO BORDERS) */
+        #courses {
+            padding: 100px 5% 150px;
+            background-color: var(--bg-offblack);
+        }
+
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-header h2 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-        }
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 80px;
         }
 
-        /* Grid for Courses */
+        .section-header h2 {
+            font-size: 4rem;
+        }
+
         #course-schedule {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* Refined Pro Course Cards */
         .course-card {
-            background-color: var(--bg-deep);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s ease;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            cursor: pointer;
+            group: hover;
         }
-        .course-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 139, 139, 0.4);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
+
+        /* The Image */
         .course-card img {
             width: 100%;
-            height: 450px; /* Increased height to show more of the diver */
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
+        /* Hover Zoom Effect */
+        .course-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Elegant text overlay */
+        .course-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(0deg, rgba(2,4,6,0.95) 0%, rgba(2,4,6,0.6) 50%, transparent 100%);
+            transition: height 0.5s ease;
+        }
+
+        .course-card:hover::after {
+            height: 85%;
+        }
+
         .course-content {
-            padding: 30px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            z-index: 2;
+            transition: transform 0.5s ease;
         }
+
+        .course-card:hover .course-content {
+            transform: translateY(-10px);
+        }
+
         .course-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             color: #fff;
         }
+
         .course-date {
-            color: var(--teal);
-            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: var(--accent-teal);
             display: block;
             margin-bottom: 15px;
-            font-weight: 600;
+            font-weight: 500;
         }
+
         .course-content p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 300;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #010305;
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        footer h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-        footer p {
-            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            color: #b0b8c1;
             font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        .social-link {
-            color: var(--teal);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        .social-link:hover {
-            color: var(--accent-orange);
+            font-weight: 300;
+            line-height: 1.6;
         }
 
-        /* MOBILE RESPONSIVENESS */
-        @media (max-width: 900px) {
-            .hero-content h1 { font-size: 2.8rem; }
-            #about { flex-direction: column; text-align: center; }
-            .logo-container img { height: 75px; }
+        /* MINIMAL FOOTER */
+        footer {
+            background-color: #010203;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        footer img {
+            height: 50px;
+            margin-bottom: 30px;
+            opacity: 0.5;
+            filter: grayscale(100%) brightness(200%); /* Makes logo subtle grey */
+        }
+
+        footer p {
+            color: var(--text-grey);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .social-link {
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--accent-teal);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            #about { flex-direction: column; gap: 50px; padding: 100px 5%; }
+            .about-image img { height: 500px; }
+            .hero-content h1 { font-size: 4rem; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; width: 100%; top: 0; border-radius: 0; }
             nav ul { display: none; }
+            .hero-content h1 { font-size: 3rem; }
+            .hero-content p { font-size: 0.9rem; }
+            .about-text h2 { font-size: 2.5rem; }
+            .course-card { height: 500px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- FLOATING LIGHT HEADER -->
     <header>
         <div class="logo-container">
             <a href="#">
-                <img src="images/logo.jpg" alt="OceanicVibes Freediving Logo">
+                <img src="images/logo.jpg" alt="OceanicVibes Logo">
             </a>
         </div>
         <nav>
@@ -294,36 +397,35 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- CINEMATIC HERO -->
     <section id="hero">
         <div class="hero-content">
+            <span class="eyebrow">Riviera Maya, Mexico</span>
             <h1>Master Your Depth</h1>
-            <p>Elite Freediving Instruction, Equalization & Depth Training based in Playa del Carmen, Riviera Maya & Bacalar.</p>
-            <a href="#courses" class="btn">View Training Schedule</a>
+            <p>Elite Freediving Instruction & Advanced Equalization</p>
+            <a href="#courses" class="btn">Explore Training</a>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ASYMMETRICAL ABOUT SECTION -->
     <section id="about">
+        <div class="about-image">
+            <img src="images/about.jpg" alt="Freediver preparing for deep dive" style="object-position: center 40%;">
+        </div>
         <div class="about-text">
-            <span class="accent-text">Professional Instruction</span>
-            <!-- NEW HIGH-END ATHLETE FOCUSED HEADING -->
-            <h2>Elite Training for the Dedicated Athlete.</h2>
+            <span class="eyebrow">The Methodology</span>
+            <h2>Elite training for the dedicated athlete.</h2>
             <p>At OceanicVibes, we train athletes, watermen, and dedicated individuals to safely and comfortably unlock their true aquatic potential. We specialize in advanced depth progression and professional AIDA certification.</p>
             <p>Whether you are mastering the Frenzel maneuver, working on Mouthfill equalization for deep dives, or overcoming mental barriers through deep relaxation and CO2 tolerance training, our methodology ensures elite-level safety and measurable progression.</p>
             <p>We utilize the unparalleled conditions of the Riviera Maya—from the endless blue off the coast of Playa del Carmen to the crystal-clear, mystical depths of dozens of surrounding Cenotes, and the stunning waters of Bacalar.</p>
         </div>
-        <div class="about-image">
-            <img src="images/about.jpg" alt="Freediver focusing on relaxation before a deep dive">
-        </div>
     </section>
 
-    <!-- COURSES & SCHEDULE SECTION -->
+    <!-- EDITORIAL COURSES SECTION -->
     <section id="courses">
         <div class="section-header">
-            <span class="accent-text">Current Schedule</span>
-            <h2>Upcoming Training & Courses</h2>
-            <p>Secure your spot in our upcoming AIDA certification courses and specialized depth training camps.</p>
+            <span class="eyebrow">Current Schedule</span>
+            <h2>Upcoming Training</h2>
         </div>
 
         <div id="course-schedule">
@@ -334,21 +436,19 @@
             -->
             
             <article class="course-card">
-                <!-- Added inline object-position to force the crop to target the diver in the lower half of the photo -->
-                <img src="images/course.jpg" alt="Freediver ascending the line in a cenote" style="object-position: center 65%;">
+                <img src="images/course.jpg" alt="Ascending in a cenote" style="object-position: center 60%;">
                 <div class="course-content">
-                    <h3>AIDA 2 Foundation Course</h3>
-                    <span class="course-date">📍 Playa del Carmen & Cenotes | Oct 15 - 17</span>
+                    <span class="course-date">📍 Playa del Carmen | Oct 15 - 17</span>
+                    <h3>AIDA 2 Foundation</h3>
                     <p>Build a bulletproof foundation. Focus on Frenzel equalization, duck dives, breathing techniques, and safety protocols up to 20 meters.</p>
                 </div>
             </article>
 
             <article class="course-card">
-                <!-- Reused the hero image for the second card, focusing on the upper half of the body -->
                 <img src="images/hero.jpg" alt="Deep freediving line training" style="object-position: center 30%;">
                 <div class="course-content">
-                    <h3>Advanced Depth & Equalization</h3>
                     <span class="course-date">📍 Riviera Maya Cenotes | Nov 02 - 05</span>
+                    <h3>Advanced Depth</h3>
                     <p>Advanced line training focusing on Free Immersion (FIM), Constant Weight (CWT), and overcoming depth barriers through advanced equalization techniques.</p>
                 </div>
             </article>
@@ -356,14 +456,13 @@
         </div>
     </section>
 
-    <!-- FOOTER / CONTACT -->
+    <!-- MINIMAL FOOTER -->
     <footer id="contact">
-        <h3>OceanicVibes Freediving</h3>
+        <!-- Greyed out logo in footer for subtle branding -->
+        <img src="images/logo.jpg" alt="OceanicVibes Logo">
         <p>Playa del Carmen | Riviera Maya | Bacalar</p>
-        <p>Email: train@oceanicvibes.com</p>
-        <p>Instagram: <a href="https://instagram.com/oceanic__vibesfreediving" target="_blank" class="social-link">@oceanic__vibesfreediving</a></p>
-        <br>
-        <p style="font-size: 0.8rem; opacity: 0.5;">&copy; 2026 OceanicVibes. All Rights Reserved.</p>
+        <p>train@oceanicvibes.com</p>
+        <p>IG: <a href="https://instagram.com/oceanic__vibesfreediving" target="_blank" class="social-link">@oceanic__vibesfreediving</a></p>
     </footer>
 
 </body>
