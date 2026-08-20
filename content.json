@@ -1,0 +1,15 @@
+{
+  "heroEyebrow": "Riviera Maya · Mexico",
+  "heroTitle": "Master|your depth.",
+  "heroSubtitle": "Elite freediving instruction, advanced equalization, and depth training for people who want to feel at home beneath the surface.",
+  "aboutLead": "At OceanicVibes, we train athletes, watermen, and dedicated individuals to safely unlock their true aquatic potential.",
+  "aboutBody": "From Frenzel and Mouthfill equalization to CO2 tolerance and deep relaxation, every session is built around calm, measurable progression and uncompromising safety.",
+  "footerCopy": "Private instruction and depth training in the waters of the Yucatan.",
+  "footerEmail": "train@oceanicvibes.com",
+  "instagram": "@oceanic__vibesfreediving",
+  "courses": [
+    {"date": "Oct 15–17", "location": "Playa del Carmen", "title": "AIDA 2 Foundation", "description": "Build a bulletproof foundation with Frenzel equalization, duck dives, breathing techniques, and safety protocols up to 20 meters."},
+    {"date": "Nov 02–05", "location": "Bacalar", "title": "Stillness & Technique", "description": "A focused Bacalar weekend for breathwork, relaxation, body position, and the calm precision that makes depth feel effortless."},
+    {"date": "Nov 18–22", "location": "Playa del Carmen", "title": "Advanced Depth", "description": "Line training in Free Immersion and Constant Weight, with advanced equalization and coaching through your next depth barrier."}
+  ]
+}

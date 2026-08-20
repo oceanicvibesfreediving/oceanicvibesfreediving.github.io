@@ -4,10 +4,10 @@ Static GitHub Pages site for OceanicVibes freediving instruction.
 
 ## Instructor editing
 
-1. Open `admin.html` on the published site.
+1. Open `admin.html` locally or on the published site.
 2. Enter the password configured at the top of `admin.js` (`oceanic2026` by default).
 3. Edit homepage copy and add training sessions for either Playa del Carmen or Bacalar.
-4. Select **Save website content**.
-5. Use **Download backup** to save the content JSON somewhere safe.
+4. Download the content JSON backup.
+5. Replace `content.json` in this repository with the downloaded file and commit it to GitHub.
 
-Content is stored in the browser's `localStorage`, so it updates the public page in that same browser/device. A static GitHub Pages site cannot share edits with every visitor or provide real server-side password protection. For shared, cross-device editing, connect the same fields to a hosted database/auth provider such as Supabase or Firebase.
+The public site reads `content.json` from GitHub Pages. Git history provides backups and versioning, so no database or hosted data service is required. The admin password is only a convenience gate; static GitHub Pages cannot provide server-side authentication.
