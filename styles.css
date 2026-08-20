@@ -9,3 +9,4 @@
 @media(max-width:800px){.manifesto-grid{display:flex;flex-direction:column;gap:45px;align-items:stretch}.manifesto-content{max-width:none}.manifesto-content .manifesto-copy{padding-top:0}.method-image{min-height:390px;width:100%}}
 .hero-visual{align-self:start;margin-top:-180px;height:100dvh}.hero-visual .hero-image{height:100%}
 @media(max-width:800px){.hero-visual{align-self:auto;margin-top:0;height:auto}.hero-visual .hero-image{height:55vh;min-height:390px}}
+.closing-image{background-size:contain;background-repeat:no-repeat;background-color:#07191f}.closing-image:after{background:linear-gradient(to right,#07191f 0%,transparent 18%,transparent 82%,#07191f 100%),linear-gradient(to bottom,#07191f 0%,transparent 8%,transparent 90%,#07191f 100%)}
