@@ -10,3 +10,5 @@
 .hero-visual{align-self:start;margin-top:-180px;height:100dvh}.hero-visual .hero-image{height:100%}
 @media(max-width:800px){.hero-visual{align-self:auto;margin-top:0;height:auto}.hero-visual .hero-image{height:55vh;min-height:390px}}
 .closing-image{background-size:contain;background-repeat:no-repeat;background-color:#07191f}.closing-image:after{background:linear-gradient(to right,#07191f 0%,transparent 18%,transparent 82%,#07191f 100%),linear-gradient(to bottom,#07191f 0%,transparent 8%,transparent 90%,#07191f 100%)}
+.closing{padding-top:0;padding-bottom:0}.closing-image{height:auto;min-height:650px;align-self:stretch}.closing-copy{padding-top:120px;padding-bottom:120px}
+@media(max-width:800px){.closing{padding-top:105px;padding-bottom:105px}.closing-image{height:330px;min-height:0}.closing-copy{padding-top:0;padding-bottom:0}}
