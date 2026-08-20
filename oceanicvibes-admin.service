@@ -1,0 +1,16 @@
+[Unit]
+Description=OceanicVibes GitHub admin server
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+WorkingDirectory=/OCEANICVIBES
+ExecStart=/home/admin/.local/bin/node /OCEANICVIBES/server.js
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=3010
+
+[Install]
+WantedBy=multi-user.target

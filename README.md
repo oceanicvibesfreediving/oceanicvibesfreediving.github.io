@@ -17,8 +17,8 @@ The public site reads `content.json` from GitHub Pages. Git history provides bac
 The local Node server provides the secure publishing layer for the admin interface. It keeps the GitHub token on the VPS and commits content or image changes through the GitHub Contents API.
 
 1. Copy `.env.example` to `.env` on the VPS and set `GITHUB_PERSONAL_ACCESS_TOKEN`, `GITHUB_REPOSITORY`, and a strong `ADMIN_PASSWORD`.
-2. Run `npm start` to start the server on port `3000`.
-3. Put Nginx in front of it and proxy `/api/` to `127.0.0.1:3000`. The static site can be served from this project directory or by the Node server.
+2. Run `npm start` to start the server on port `3010` on this VPS.
+3. Put Nginx in front of it and proxy `/api/` to `127.0.0.1:3010`. The static site can be served from this project directory or by the Node server.
 4. Open `/admin.html`, sign in, and publish content or images directly to GitHub.
 
 Example Nginx locations:
@@ -27,7 +27,7 @@ Example Nginx locations:
 root /var/www/oceanicvibes;
 
 location /api/ {
-    proxy_pass http://127.0.0.1:3000;
+    proxy_pass http://127.0.0.1:3010;
     proxy_set_header Host $host;
     proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
