@@ -1,7 +1,8 @@
 const login=document.getElementById('login'),editor=document.getElementById('editor'),status=document.getElementById('saveStatus');
 const imageTargets=[['hero','Hero image','images/hero.jpg'],['about','Methodology image','images/about.jpg'],['course','Closing image','images/course.jpg'],['logo','Logo image','images/logo.jpg']];
 let content=null;
-async function api(path,options={}){const response=await fetch(path,{credentials:'same-origin',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});let data={};try{data=await response.json()}catch{}if(!response.ok)throw new Error(data.error||'Request failed');return data}
+const API_BASE='https://static.casamigo.net/oceanicvibes-api';
+async function api(path,options={}){const response=await fetch(`${API_BASE}${path}`,{credentials:'include',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});let data={};try{data=await response.json()}catch{}if(!response.ok)throw new Error(data.error||'Request failed');return data}
 function setStatus(message,error=false){status.textContent=message;status.classList.toggle('error',error)}
 async function loadContent(){content=await api('/api/content');populate();renderImages()}
 function showEditor(){login.hidden=true;editor.hidden=false;loadContent().catch(error=>setStatus(error.message,true))}

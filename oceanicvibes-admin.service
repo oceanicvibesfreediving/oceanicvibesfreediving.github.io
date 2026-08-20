@@ -11,6 +11,7 @@ Restart=on-failure
 RestartSec=5
 Environment=NODE_ENV=production
 Environment=PORT=3010
+Environment=ADMIN_ORIGIN=https://oceanicvibesfreediving.github.io
 
 [Install]
 WantedBy=multi-user.target
