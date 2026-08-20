@@ -1,0 +1,7 @@
+{
+  "name": "oceanicvibes-admin",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}

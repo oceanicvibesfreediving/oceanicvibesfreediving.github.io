@@ -11,3 +11,31 @@ Static GitHub Pages site for OceanicVibes freediving instruction.
 5. Replace `content.json` in this repository with the downloaded file and commit it to GitHub.
 
 The public site reads `content.json` from GitHub Pages. Git history provides backups and versioning, so no database or hosted data service is required. The admin password is only a convenience gate; static GitHub Pages cannot provide server-side authentication.
+
+## VPS admin publishing
+
+The local Node server provides the secure publishing layer for the admin interface. It keeps the GitHub token on the VPS and commits content or image changes through the GitHub Contents API.
+
+1. Copy `.env.example` to `.env` on the VPS and set `GITHUB_PERSONAL_ACCESS_TOKEN`, `GITHUB_REPOSITORY`, and a strong `ADMIN_PASSWORD`.
+2. Run `npm start` to start the server on port `3000`.
+3. Put Nginx in front of it and proxy `/api/` to `127.0.0.1:3000`. The static site can be served from this project directory or by the Node server.
+4. Open `/admin.html`, sign in, and publish content or images directly to GitHub.
+
+Example Nginx locations:
+
+```nginx
+root /var/www/oceanicvibes;
+
+location /api/ {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+
+location / {
+    try_files $uri $uri/ /index.html;
+}
+```
+
+Run the process with systemd or another supervisor so it restarts automatically. `oceanicvibes-admin.service.example` is a starting point for systemd. The GitHub token must never be placed in frontend JavaScript or committed to the repository.

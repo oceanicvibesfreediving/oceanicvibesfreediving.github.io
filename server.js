@@ -1,0 +1,40 @@
+const http=require('http');
+const https=require('https');
+const fs=require('fs');
+const path=require('path');
+const crypto=require('crypto');
+
+function loadEnv(){try{for(const line of fs.readFileSync(path.join(__dirname,'.env'),'utf8').split(/\r?\n/)){const match=line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);if(match&&!process.env[match[1]])process.env[match[1]]=match[2].replace(/^['"]|['"]$/g,'')}}catch{}}
+loadEnv();
+
+const PORT=Number(process.env.PORT||3000);
+const REPOSITORY=process.env.GITHUB_REPOSITORY||'oceanicvibesfreediving/oceanicvibesfreediving.github.io';
+const BRANCH=process.env.GITHUB_BRANCH||'main';
+const TOKEN=process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+const PASSWORD=process.env.ADMIN_PASSWORD||'oceanic2026';
+const sessions=new Map();
+const imageTargets={hero:'images/hero.jpg',about:'images/about.jpg',course:'images/course.jpg',logo:'images/logo.jpg'};
+const publicRoot=__dirname;
+
+if(!TOKEN)console.warn('GITHUB_PERSONAL_ACCESS_TOKEN is not set; publishing will fail.');
+
+function send(response,status,body,headers={}){const payload=typeof body==='string'?body:JSON.stringify(body);response.writeHead(status,{'Content-Type':typeof body==='string'?'text/plain; charset=utf-8':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(payload),...headers});response.end(payload)}
+function readBody(request,limit=12*1024*1024){return new Promise((resolve,reject)=>{let size=0;const chunks=[];request.on('data',chunk=>{size+=chunk.length;if(size>limit){reject(new Error('Request too large'));request.destroy();return}chunks.push(chunk)});request.on('end',()=>resolve(Buffer.concat(chunks)));request.on('error',reject)})}
+function sessionCookie(request){const cookies=(request.headers.cookie||'').split(';').map(value=>value.trim().split('='));return cookies.find(([key])=>key==='ov_session')?.[1]}
+function authenticated(request){const token=sessionCookie(request);const session=token&&sessions.get(token);if(!session||session.expires<Date.now()){if(token)sessions.delete(token);return false}session.expires=Date.now()+12*60*60*1000;return true}
+function secureCookie(request){return request.headers['x-forwarded-proto']==='https'||process.env.NODE_ENV==='production'}
+function login(request,response){return readBody(request,1024).then(body=>{let input;try{input=JSON.parse(body)}catch{return send(response,400,{error:'Invalid request'})}const supplied=Buffer.from(String(input.password||''));const expected=Buffer.from(PASSWORD);const valid=supplied.length===expected.length&&crypto.timingSafeEqual(supplied,expected);if(!valid)return send(response,401,{error:'Invalid password'});const token=crypto.randomBytes(32).toString('hex');sessions.set(token,{expires:Date.now()+12*60*60*1000});const secure=secureCookie(request)?'; Secure':'';send(response,200,{ok:true},{'Set-Cookie':`ov_session=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=43200${secure}`})})}
+function githubRequest(method,apiPath,body){return new Promise((resolve,reject)=>{if(!TOKEN)return reject(new Error('GitHub token is not configured'));const payload=body?JSON.stringify(body):null;const request=https.request({hostname:'api.github.com',path:apiPath,method,headers:{'User-Agent':'OceanicVibes-admin','Accept':'application/vnd.github+json','Authorization':`Bearer ${TOKEN}`,'X-GitHub-Api-Version':'2022-11-28',...(payload?{'Content-Type':'application/json','Content-Length':Buffer.byteLength(payload)}:{})}},response=>{const chunks=[];response.on('data',chunk=>chunks.push(chunk));response.on('end',()=>{const text=Buffer.concat(chunks).toString();let data;try{data=JSON.parse(text)}catch{data={message:text}}if(response.statusCode>=200&&response.statusCode<300)resolve(data);else reject(new Error(data.message||`GitHub API ${response.statusCode}`))})});request.on('error',reject);if(payload)request.write(payload);request.end()})}
+async function githubFile(filePath){const apiPath=`/repos/${REPOSITORY}/contents/${filePath.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(BRANCH)}`;return githubRequest('GET',apiPath)}
+async function commitFile(filePath,buffer,message){let current;try{current=await githubFile(filePath)}catch(error){if(!error.message.includes('Not Found'))throw error}const apiPath=`/repos/${REPOSITORY}/contents/${filePath.split('/').map(encodeURIComponent).join('/')}`;const body={message,content:Buffer.from(buffer).toString('base64'),branch:BRANCH};if(current?.sha)body.sha=current.sha;return githubRequest('PUT',apiPath,body)}
+function localContent(){try{return JSON.parse(fs.readFileSync(path.join(publicRoot,'content.json'),'utf8'))}catch{return {}}}
+function imageName(name){return imageTargets[name]}
+function jsonError(response,error){console.error(error);send(response,500,{error:error.message||'Server error'})}
+async function api(request,response,url){if(url.pathname==='/api/login'&&request.method==='POST')return login(request,response);if(url.pathname==='/api/logout'&&request.method==='POST'){const token=sessionCookie(request);if(token)sessions.delete(token);return send(response,200,{ok:true},{'Set-Cookie':'ov_session=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0'})}if(url.pathname==='/api/session'&&request.method==='GET')return send(response,200,{authenticated:authenticated(request)});if(!authenticated(request))return send(response,401,{error:'Authentication required'});
+  if(url.pathname==='/api/content'&&request.method==='GET')return send(response,200,localContent());
+  if(url.pathname==='/api/content'&&request.method==='PUT'){try{const value=JSON.parse(await readBody(request,1024*1024));if(!value||!Array.isArray(value.courses))return send(response,400,{error:'Content must include a courses array'});const saved=JSON.stringify(value,null,2)+'\n';await commitFile('content.json',Buffer.from(saved),'Update website content');fs.writeFileSync(path.join(publicRoot,'content.json'),saved);return send(response,200,{ok:true,commit:saved.length})}catch(error){return jsonError(response,error)}}
+  const imageMatch=url.pathname.match(/^\/api\/images\/(hero|about|course|logo)$/);if(imageMatch&&request.method==='PUT'){try{const body=JSON.parse(await readBody(request));if(typeof body.data!=='string'||!/^data:image\/(jpeg|png|webp|gif);base64,[A-Za-z0-9+/=]+$/.test(body.data))return send(response,400,{error:'Use a JPEG, PNG, WebP, or GIF image'});const [,type,data]=body.data.match(/^data:(image\/(?:jpeg|png|webp|gif));base64,(.+)$/);const target=imageName(imageMatch[1]);await commitFile(target,Buffer.from(data,'base64'),`Replace ${target}`);fs.writeFileSync(path.join(publicRoot,target),Buffer.from(data,'base64'));return send(response,200,{ok:true,path:target,type})}catch(error){return jsonError(response,error)}}
+  return send(response,404,{error:'Not found'})}
+function serveStatic(request,response,url){let requested=url.pathname==='/'?'/index.html':url.pathname;try{requested=decodeURIComponent(requested)}catch{return send(response,400,'Bad request')}const filePath=path.resolve(publicRoot,`.${requested}`);if(!filePath.startsWith(`${publicRoot}${path.sep}`))return send(response,403,'Forbidden');fs.stat(filePath,(error,stats)=>{if(error||!stats.isFile())return send(response,404,'Not found');const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.webp':'image/webp','.gif':'image/gif'};response.writeHead(200,{'Content-Type':types[path.extname(filePath).toLowerCase()]||'application/octet-stream','Cache-Control':requested==='/content.json'?'no-store':'public, max-age=300'});fs.createReadStream(filePath).pipe(response)})}
+const server=http.createServer((request,response)=>{let url;try{url=new URL(request.url,`http://${request.headers.host||'localhost'}`)}catch{return send(response,400,'Bad request')}if(url.pathname.startsWith('/api/'))return api(request,response,url).catch(error=>jsonError(response,error));serveStatic(request,response,url)});
+server.listen(PORT,()=>console.log(`OceanicVibes admin server listening on http://127.0.0.1:${PORT}`));
