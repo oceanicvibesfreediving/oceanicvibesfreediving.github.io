@@ -1,7 +1,7 @@
 const login=document.getElementById('login'),editor=document.getElementById('editor'),status=document.getElementById('saveStatus');
 const imageTargets=[['hero','Hero image','images/hero.jpg'],['about','Methodology image','images/about.jpg'],['course','Closing image','images/course.jpg'],['logo','Logo image','images/logo.jpg']];
 let content=null;
-const API_BASE='https://static.casamigo.net/oceanicvibes-api';
+const API_BASE='https://api.oceanicvibes.com/api';
 async function api(path,options={}){const response=await fetch(`${API_BASE}${path}`,{credentials:'include',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});let data={};try{data=await response.json()}catch{}if(!response.ok)throw new Error(data.error||'Request failed');return data}
 function setStatus(message,error=false){status.textContent=message;status.classList.toggle('error',error)}
 async function loadContent(){content=await api('/content');populate();renderImages()}
