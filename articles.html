@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Articles — OceanicVibes</title>
+<style>
+:root{--bg:#f6f9fb;--card:#fff;--ink:#12303e;--dim:#5b7684;--accent:#0a7ea4}
+body{margin:0;font:16px/1.65 Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink)}
+header{background:#062c3d;color:#e8f4f8;padding:48px 20px;text-align:center}
+header h1{margin:0 0 6px;font-size:30px;font-weight:normal}
+header p{margin:0;color:#9cc3d4}
+main{max-width:720px;margin:32px auto;padding:0 20px}
+.card{background:var(--card);border-radius:10px;padding:26px 28px;margin-bottom:18px;box-shadow:0 1px 4px rgba(6,44,61,.08)}
+.date{color:var(--dim);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+h2.title{margin:0 0 12px;font-size:22px}
+.md h2{font-size:19px;margin:1.2em 0 .4em}.md h3{font-size:17px;margin:1.1em 0 .35em}
+.md p{margin:.7em 0}.md ul,.md ol{margin:.6em 0 .6em 1.3em}.md li{margin:.25em 0}
+.md code{background:#eef3f6;padding:1px 5px;border-radius:4px;font-size:.9em}
+footer{text-align:center;color:var(--dim);padding:30px 0 40px;font-size:14px}
+a{color:var(--accent)}
+#status{text-align:center;color:var(--dim);padding:40px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Field notes &amp; freediving knowledge</h1>
+  <p>OceanicVibes · Riviera Maya</p>
+</header>
+<main id="content"><div id="status">Loading articles…</div></main>
+<footer>Written by Ada, maintained with OceanicVibes · <a href="/">← Back to OceanicVibes</a></footer>
+<script>
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function md(text){
+  let t = esc(text);
+  t = t.replace(/^### (.*)$/gm,'<h3>$1</h3>').replace(/^## (.*)$/gm,'<h2>$1</h2>').replace(/^# (.*)$/gm,'<h2>$1</h2>');
+  t = t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+  t = t.replace(/`([^`]+)`/g,'<code>$1</code>');
+  t = t.replace(/((?:^- .*\n?)+)/gm,'<ul>$1</ul>').replace(/^- (.*)$/gm,'<li>$1</li>');
+  return t.split(/\n{2,}/).map(b=>/^<(h|u|l|p)/.test(b.trim())?b:`<p>${b.replace(/\n/g,'<br>')}</p>`).join('');
+}
+(async()=>{
+  const main = document.getElementById('content');
+  let index;
+  try{
+    index = await (await fetch('articles/index.json?t='+Date.now())).json();
+  }catch(e){
+    main.innerHTML = '<div class="card" id="status">No articles yet — check back soon.</div>';
+    return;
+  }
+  if(!index.length){main.innerHTML='<div class="card" id="status">No articles yet.</div>';return}
+  main.innerHTML='';
+  for(const a of index){
+    const card=document.createElement('div'); card.className='card';
+    card.innerHTML=`<div class="date">${esc(a.date||'')}</div><h2 class="title">${esc(a.title)}</h2><div class="md"><em>Loading…</em></div>`;
+    main.appendChild(card);
+    try{
+      const res=await fetch(`articles/${encodeURIComponent(a.slug)}.md?t=${Date.now()}`);
+      card.querySelector('.md').innerHTML = res.ok ? md(await res.text()) : '<em>Coming soon.</em>';
+    }catch(e){ card.querySelector('.md').innerHTML='<em>Coming soon.</em>' }
+  }
+})();
+</script>
+</body>
+</html>
