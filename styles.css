@@ -77,3 +77,81 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sun);outline-offset
 .method-image{border-radius:12px}
 .hero-image{box-shadow:0 22px 50px -28px rgba(10,20,30,.65)}
 }
+
+/* =====================================================================
+   REDESIGN — brighter, more dynamic, less flat
+   luminous water · deepened caustic signature · layered light
+   ===================================================================== */
+:root{--caust-op:.15;--aqua-deep:#1a8a7f;--light:#f3f8f5}
+
+/* --- surface band: the shimmering surface you left behind --- */
+.surface-band{position:fixed;top:0;left:0;right:0;height:3px;z-index:20;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(158,220,209,.75),rgba(230,176,106,.75),transparent);background-size:220% 100%;animation:surfaceShimmer 9s ease-in-out infinite}
+@keyframes surfaceShimmer{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+/* --- hero: luminous water, brighter and more alive --- */
+.hero{background:radial-gradient(120% 85% at 18% 0%,rgba(158,220,209,.30),transparent 55%),radial-gradient(90% 65% at 82% 12%,rgba(230,176,106,.26),transparent 50%),linear-gradient(160deg,#0b2c32 0%,#0e3a40 48%,#0a282e 100%)}
+.hero-intro{color:#d7e6e1}
+.hero-ident-top{color:#c2dcd6}
+.hero-ident-top span:first-child{color:var(--sun-hi)}
+
+/* --- sunbeams: light rays filtering down over the hero --- */
+.hero-rays{position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 42%,rgba(230,176,106,.16) 46%,transparent 52%),linear-gradient(75deg,transparent 55%,rgba(158,220,209,.14) 59%,transparent 65%),linear-gradient(135deg,transparent 30%,rgba(230,176,106,.12) 34%,transparent 40%);animation:rayDrift 16s ease-in-out infinite}
+@keyframes rayDrift{0%,100%{opacity:.65;transform:translateX(0)}50%{opacity:1;transform:translateX(16px)}}
+
+/* --- caustic: brighter, more present --- */
+.caustic{opacity:var(--caust-op,.15)}
+.caustic-deep{position:fixed;inset:-30px;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:var(--caust-op,.10);background-repeat:no-repeat;background-size:320% 320%;background-image:radial-gradient(40% 34% at 30% 22%,rgba(158,220,209,.42),transparent 60%),radial-gradient(46% 32% at 68% 40%,rgba(230,176,106,.36),transparent 62%),radial-gradient(50% 36% at 50% 78%,rgba(158,220,209,.32),transparent 64%);transform:translate3d(var(--caust-x,0px),var(--caust-y,0px),0);animation:causticFlow 60s ease-in-out infinite;will-change:transform,opacity}
+
+/* --- hero image: light sweep across the water --- */
+.hero-image::before{background:linear-gradient(115deg,transparent 30%,rgba(230,176,106,.38) 45%,rgba(158,220,209,.22) 55%,transparent 70%);background-size:220% 220%;animation:lightSweep 11s ease-in-out infinite}
+@keyframes lightSweep{0%,100%{background-position:120% 0}50%{background-position:-20% 0}}
+
+/* --- manifesto: luminous wash from the light side --- */
+.manifesto{background:radial-gradient(90% 70% at 12% 8%,rgba(158,220,209,.16),transparent 55%),radial-gradient(70% 60% at 88% 90%,rgba(230,176,106,.10),transparent 55%),var(--deep)}
+.manifesto-copy p{color:#c2d6d0}
+
+/* --- training: brighter light section with real depth --- */
+.training{background:linear-gradient(180deg,#f6faf7 0%,#edf4ef 100%)}
+.training .section-label{color:#5f7d78}
+.training .section-label span:first-child{color:var(--aqua-deep)}
+.section-heading h2 i{color:var(--aqua-deep)}
+.section-heading>p{color:#5c7671}
+.course-card{background:linear-gradient(180deg,#ffffff 0%,#f2f7f4 100%);border:1px solid #dbe6dc;box-shadow:0 24px 46px -26px rgba(23,60,46,.28),0 6px 16px -8px rgba(23,60,46,.16),inset 0 1px 0 rgba(255,255,255,.9)}
+.course-card:hover{background:linear-gradient(180deg,#ffffff 0%,#e9f2ec 100%);transform:translateX(5px)}
+.course-list{background:#c9dbd3}
+.empty-state{background:#f2f7f4}
+.filter-button{color:#6f8a85}
+.filter-button.is-active,.filter-button:hover{color:var(--aqua-deep)}
+.filter-button:before,.filter-button.is-active:before{background:var(--aqua-deep)}
+.course-location{color:var(--aqua-deep)}
+.course-card p{color:#5f7773}
+.course-arrow{color:var(--aqua-deep);border-color:#a9c4ba}
+
+/* --- closing: brighter with light rays --- */
+.closing{background:linear-gradient(160deg,#0b2c32 0%,#0a282e 60%,#07191f 100%)}
+.closing-image::before{background:linear-gradient(140deg,rgba(230,176,106,.24),rgba(158,220,209,.14) 45%,rgba(4,16,18,.08));mix-blend-mode:screen}
+
+/* --- depth counter: brighter --- */
+.depth-caption{color:#c2dcd6}
+
+/* --- descent: lighter veil so the page stays bright --- */
+.descent{background:linear-gradient(to bottom,rgba(4,12,20,.08) 0%,rgba(3,9,18,.22) 55%,rgba(3,8,14,.4) 100%)}
+
+/* --- footer: brighter links --- */
+.footer-bottom a{color:#cfe3dd}
+.footer-location{color:var(--sun-hi)}
+
+/* --- reduced motion --- */
+@media(prefers-reduced-motion:reduce){
+.surface-band,.hero-rays,.caustic-deep{animation:none}
+.hero-rays{opacity:.6}
+.hero-image::before{animation:none}
+}
+
+/* --- small screens: keep the light slow and dim --- */
+@media(max-width:800px){
+.caustic{opacity:.07}
+.caustic-deep{opacity:.05}
+.hero-rays{opacity:.5}
+.surface-band{height:2px}
+}
