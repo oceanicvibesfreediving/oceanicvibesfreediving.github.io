@@ -3,87 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OceanicVibes | Instructor Admin</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="admin.css">
+<title>Redirecting to your admin…</title>
 <style>
-  .ada-tabs{display:flex;gap:8px;margin-bottom:24px;border-bottom:1px solid var(--line);padding-bottom:0}
-  .ada-tab{align:baseline;cursor:pointer;background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-  .ada-tab.on{color:var(--sea);border-bottom-color:var(--sea)}
-  #adaStudio{display:block}
-  #adaFrame{display:none}
-  #adaFrame iframe{width:100%;height:calc(100vh - 210px);min-height:520px;border:1px solid var(--line);border-radius:16px;background:var(--deep)}
+  html,body{margin:0;height:100%;background:#061116}
+  iframe{width:100vw;height:100vh;border:0;display:block}
 </style>
 </head>
 <body>
-<main class="admin-shell">
-  <div class="admin-header">
-    <a class="back-link" href="index.html">← View public site</a>
-    <p class="eyebrow">OceanicVibes / Instructor studio</p>
-    <h1>Keep the water moving.</h1>
-    <p class="intro">Update your site, talk to Ada, and watch the design change — all in one place.</p>
-    <div class="ada-tabs">
-      <button class="ada-tab on" data-tab="studio" onclick="showTab('studio')">Site studio</button>
-      <button class="ada-tab" data-tab="ada" onclick="showTab('ada')">Ada — AI webmaster</button>
-    </div>
-  </div>
-
-  <div id="adaStudio">
-    <section id="login" class="panel login-panel">
-      <p class="eyebrow">Private access</p>
-      <h2>Enter your password</h2>
-      <form id="loginForm">
-        <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
-        <button class="primary" type="submit">Unlock studio <span>↗</span></button>
-        <p id="loginError" class="error" hidden>That password didn’t work.</p>
-      </form>
-      <small>Your password is checked by the VPS admin server. GitHub credentials stay on the server and are never sent to the browser.</small>
-    </section>
-    <div id="editor" hidden>
-      <div class="toolbar"><strong>Content editor</strong><span id="saveStatus">Saved locally</span><button id="logout" class="quiet">Lock</button></div>
-      <form id="contentForm">
-        <section class="panel">
-          <p class="eyebrow">01 / Homepage copy</p>
-          <div class="field-grid">
-            <label>Hero eyebrow<input name="heroEyebrow"></label>
-            <label>Hero title <small>Use | before the italic line</small><input name="heroTitle"></label>
-            <label class="wide">Hero intro<textarea name="heroSubtitle" rows="3"></textarea></label>
-            <label>About lead<textarea name="aboutLead" rows="4"></textarea></label>
-            <label>About body<textarea name="aboutBody" rows="4"></textarea></label>
-            <label>Footer description<textarea name="footerCopy" rows="3"></textarea></label>
-            <label>Email<input name="footerEmail" type="email"></label>
-            <label>Instagram handle<input name="instagram"></label>
-          </div>
-        </section>
-        <section class="panel">
-          <div class="section-title"><div><p class="eyebrow">02 / Training dates</p><h2>Sessions</h2></div><button id="addCourse" type="button" class="secondary">+ Add session</button></div>
-          <p class="helper">Add a separate session for each location. Use a short date range like “Oct 15–17”.</p>
-          <div id="courseFields"></div>
-        </section>
-        <div class="actions">
-          <button class="primary" type="submit">Save website content <span>↗</span></button>
-          <button id="download" type="button" class="secondary">Download backup</button>
-          <label class="secondary file-button">Restore backup<input id="upload" type="file" accept="application/json"></label>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="adaFrame">
-    <iframe id="adaIframe" src="https://api.oceanicvibes.com/ada/" title="Ada — AI webmaster"></iframe>
-  </div>
-</main>
-<script>
-  function showTab(name){
-    document.querySelectorAll('.ada-tab').forEach(b=>b.classList.toggle('on', b.dataset.tab===name));
-    document.getElementById('adaStudio').style.display = name==='studio' ? 'block' : 'none';
-    document.getElementById('adaFrame').style.display = name==='ada' ? 'block' : 'none';
-  }
-  // when opened, prefer Ada if the owner's main tool is the AI side — but default to studio.
-  if(location.hash === '#ada') showTab('ada');
-</script>
-<script src="admin.js"></script>
+<script>location.replace('https://api.oceanicvibes.com/ada/');</script>
+<iframe src="https://api.oceanicvibes.com/ada/" title="Admin"></iframe>
 </body>
 </html>
