@@ -109,6 +109,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sun);outline-offset
 /* --- hero image: light sweep across the water --- */
 .hero-image::before{content:'';position:absolute;top:-30%;bottom:-30%;left:-60%;right:-60%;pointer-events:none;background:linear-gradient(115deg,transparent 0%,rgba(230,176,106,.30) 40%,rgba(158,220,209,.18) 55%,transparent 100%);animation:lightSweep 11s ease-in-out infinite}
 @keyframes lightSweep{0%,100%{transform:translateX(-16%)}50%{transform:translateX(16%)}}
+@keyframes breathCycle{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
 
 /* --- manifesto: luminous wash from the light side --- */
 .manifesto{background:radial-gradient(90% 70% at 12% 8%,rgba(158,220,209,.16),transparent 55%),radial-gradient(70% 60% at 88% 90%,rgba(230,176,106,.10),transparent 55%),var(--deep)}
