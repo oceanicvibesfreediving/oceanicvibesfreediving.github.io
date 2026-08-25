@@ -15,20 +15,21 @@ done
 
 pelican content -o output -s pelicanconf.py
 
-# Never publish Pelican's source tree or deployment-only files. Cloudflare's
-# configured output directory is the public boundary.
+# Never publish Pelican's source tree or deployment-only files. If a future
+# plugin copies one into output, remove it rather than failing a customer
+# deployment; the output directory is the public boundary.
 for forbidden in content themes pelicanconf.py build.sh requirements.txt README.md server.js \
   oceanicvibes-admin.service oceanicvibes-admin.service.example; do
   if [ -e "output/$forbidden" ]; then
-    printf 'public output guard: forbidden path copied: output/%s\n' "$forbidden" >&2
-    exit 1
+    printf 'public output guard: removed forbidden path: output/%s\n' "$forbidden" >&2
+    rm -rf "output/$forbidden"
   fi
 done
 
 for pattern in '*.jinja' '*.jinja2' '*.j2' '*.yaml' '*.yml'; do
-  leaked=$(find output -type f -name "$pattern" -print -quit)
-  if [ -n "$leaked" ]; then
-    printf 'public output guard: template/config file copied: %s\n' "$leaked" >&2
-    exit 1
-  fi
+  while IFS= read -r leaked; do
+    [ -n "$leaked" ] || continue
+    printf 'public output guard: removed template/config file: %s\n' "$leaked" >&2
+    rm -f "$leaked"
+  done < <(find output -type f -name "$pattern" -print)
 done
