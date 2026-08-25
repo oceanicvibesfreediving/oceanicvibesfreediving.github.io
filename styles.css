@@ -79,6 +79,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sun);outline-offset
 @media(max-width:800px){
 .caustic{opacity:.05;animation:causticFlow 70s ease-in-out infinite}
 .hero-image{animation:none}
+.breath-ring{width:min(72vw,300px);opacity:.6}
+.breath-ring:before{display:none}
 .method-image{border-radius:12px}
 .hero-image{box-shadow:0 22px 50px -28px rgba(10,20,30,.65)}
 }
