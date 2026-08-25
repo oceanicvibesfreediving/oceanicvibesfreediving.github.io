@@ -71,6 +71,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--sun);outline-offset
 @media(prefers-reduced-motion:reduce){
 .caustic{animation:none;transform:translate3d(var(--caust-x,0px),var(--caust-y,0px),0)}
 .hero-image{animation:none}
+.breath-ring,.breath-ring:before{animation:none;opacity:.5}
 .descent{opacity:0}
 }
 
