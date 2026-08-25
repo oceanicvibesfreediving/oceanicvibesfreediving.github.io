@@ -43,6 +43,10 @@
 .hero-image::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(230,176,106,.3) 0%,rgba(230,176,106,.1) 34%,transparent 58%);mix-blend-mode:screen}
 .hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,17,22,.18) 0%,transparent 14%,transparent 76%,rgba(6,17,22,.55) 100%);pointer-events:none}
 
+/* breath ring: a slow inhale/exhale cycle over the hero image — the sport's rhythm */
+.breath-ring{position:absolute;top:50%;left:50%;width:min(46vw,420px);aspect-ratio:1;transform:translate(-50%,-50%);border:1px solid rgba(158,220,209,.35);border-radius:50%;pointer-events:none;z-index:0;animation:breathCycle 6s ease-in-out infinite}
+.breath-ring:before{content:'';position:absolute;inset:0;border:1px solid rgba(230,176,106,.22);border-radius:50%;animation:breathCycle 6s ease-in-out infinite reverse}
+
 /* one coherent image treatment across manifesto + closing */
 .method-image{border:1px solid rgba(230,176,106,.26);box-shadow:0 36px 84px -34px rgba(4,16,24,.72),inset 0 0 0 1px rgba(255,255,255,.04);border-radius:18px}
 .method-image::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(230,176,106,.14) 0%,transparent 40%,rgba(158,220,209,.08) 100%);mix-blend-mode:screen}
