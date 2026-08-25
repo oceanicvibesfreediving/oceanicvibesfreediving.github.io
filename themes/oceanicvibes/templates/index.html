@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Articles — OceanicVibes{% endblock %}
+{% block content %}
+<main>
+  {% if articles %}
+    {% for article in articles %}
+    <article class="card">
+      <div class="date">{{ article.date.strftime('%B %-d, %Y') }}</div>
+      <h2 class="title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+      <div class="md">{{ article.summary }}</div>
+    </article>
+    {% endfor %}
+  {% else %}
+    <div class="card">No articles yet — check back soon.</div>
+  {% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}OceanicVibes{% endblock %}</title>
+  <style>
+    :root{--bg:#f6f9fb;--card:#fff;--ink:#12303e;--dim:#5b7684;--accent:#0a7ea4}
+    body{margin:0;font:16px/1.65 Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink)}
+    header{background:#062c3d;color:#e8f4f8;padding:48px 20px;text-align:center}
+    header h1{margin:0 0 6px;font-size:30px;font-weight:normal}
+    header p{margin:0;color:#9cc3d4}
+    main{max-width:720px;margin:32px auto;padding:0 20px}
+    .card{background:var(--card);border-radius:10px;padding:26px 28px;margin-bottom:18px;box-shadow:0 1px 4px rgba(6,44,61,.08)}
+    .date{color:var(--dim);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    h2.title{margin:0 0 12px;font-size:22px}
+    .md h2{font-size:19px;margin:1.2em 0 .4em}.md h3{font-size:17px;margin:1.1em 0 .35em}
+    .md p{margin:.7em 0}.md ul,.md ol{margin:.6em 0 .6em 1.3em}.md li{margin:.25em 0}
+    .md code{background:#eef3f6;padding:1px 5px;border-radius:4px;font-size:.9em}
+    footer{text-align:center;color:var(--dim);padding:30px 0 40px;font-size:14px}
+    a{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Field notes &amp; freediving knowledge</h1>
+    <p>OceanicVibes · Riviera Maya</p>
+  </header>
+  {% block content %}{% endblock %}
+  <footer>Written by Ada, maintained with OceanicVibes · <a href="/">← Back to OceanicVibes</a></footer>
+</body>
+</html>

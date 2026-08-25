@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} — OceanicVibes{% endblock %}
+{% block content %}
+<main>
+  <article class="card">
+    <div class="date">{{ article.date.strftime('%B %-d, %Y') }}</div>
+    <h2 class="title">{{ article.title }}</h2>
+    <div class="md">{{ article.content }}</div>
+  </article>
+</main>
+{% endblock %}

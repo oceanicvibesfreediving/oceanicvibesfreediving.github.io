@@ -2,3 +2,5 @@
 .DS_Store
 .opencode/
 .agent-home/
+output/
+__pycache__/
