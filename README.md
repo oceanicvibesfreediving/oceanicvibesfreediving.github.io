@@ -15,6 +15,14 @@ The build copies the existing homepage, assets, and admin surfaces into
 and future blog metadata. Cloudflare Pages should use `bash build.sh` as its
 build command and `output` as its output directory.
 
+Cloudflare Pages build settings:
+
+```text
+Production branch: main
+Build command: python3 -m pip install -r requirements.txt && bash build.sh
+Build output directory: output
+```
+
 ## Instructor editing
 
 1. Open `admin.html` locally or on the published site.
