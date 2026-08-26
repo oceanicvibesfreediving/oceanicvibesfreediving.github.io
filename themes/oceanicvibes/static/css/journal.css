@@ -1,0 +1,211 @@
+/* =====================================================================
+   OceanVibes · Field Notes (the journal)
+   A separate reading surface for the same blue water: it borrows the
+   site's design tokens and atmosphere but stays its own, quieter page.
+   All classes are namespaced `j-` so the journal never collides with the
+   hand-authored homepage.
+   ===================================================================== */
+
+:root{
+  --j-ink:#071c22;
+  --j-deep:#061116;
+  --j-panel:#0a1e25;
+  --j-sea:#9edbd1;
+  --j-foam:#e6f1eb;
+  --j-muted:#90a7a6;
+  --j-sun:#d9a05b;
+  --j-sun-hi:#e6b06a;
+  --j-aqua:#1a8a7f;
+  --j-line:rgba(222,242,234,.16);
+  --j-sans:'Manrope',sans-serif;
+  --j-serif:'Cormorant Garamond',Georgia,serif;
+  --j-mono:'DM Mono',monospace;
+  --j-gutter:min(1240px,calc(100% - 48px));
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--j-deep);
+  color:var(--j-foam);
+  font-family:var(--j-sans);
+  font-size:15px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(158,220,209,.28);color:var(--j-foam)}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--j-sun);outline-offset:3px;border-radius:4px}
+.j-skip{position:absolute;left:-999px;top:auto;z-index:100;background:var(--j-sun);color:var(--j-ink);font:11px var(--j-mono);letter-spacing:.12em;text-decoration:none;text-transform:uppercase;padding:12px 18px;border-radius:0 0 12px 0}
+.j-skip:focus{left:0;width:auto;height:auto}
+
+/* =====================================================================
+   Atmosphere — the site's water, kept faint so the reading stays clear
+   ===================================================================== */
+.j-surface{position:fixed;top:0;left:0;right:0;height:3px;z-index:30;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(158,220,209,.7),rgba(230,176,106,.7),transparent);background-size:220% 100%;animation:jSurface 9s ease-in-out infinite}
+@keyframes jSurface{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+.j-grain{position:fixed;inset:0;pointer-events:none;opacity:.045;z-index:6;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+
+.j-caustic{position:fixed;inset:-24px;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.10;background-repeat:no-repeat;background-size:280% 280%;background-image:radial-gradient(34% 30% at 22% 16%,rgba(230,176,106,.30),transparent 60%),radial-gradient(40% 30% at 74% 28%,rgba(158,220,209,.28),transparent 60%),radial-gradient(48% 34% at 46% 70%,rgba(158,220,209,.22),transparent 66%);transform:translate3d(0,0,0);animation:jCaustic 60s ease-in-out infinite;will-change:transform,opacity}
+@keyframes jCaustic{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(22px,16px,0)}}
+
+/* =====================================================================
+   Header — the same floating pill, drawn a little quieter
+   ===================================================================== */
+.j-header{
+  position:fixed;
+  top:22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:var(--j-gutter);
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:11px 16px 11px 18px;
+  border:1px solid rgba(222,242,234,.16);
+  border-radius:999px;
+  background:rgba(7,20,26,.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 18px 40px -28px rgba(4,16,24,.55),inset 0 1px 0 rgba(255,241,235,.05);
+  z-index:20;
+}
+.j-brand{display:flex;gap:10px;align-items:center;color:var(--j-foam);text-decoration:none;line-height:.9}
+.j-brand-mark{display:grid;place-items:center;width:31px;height:31px;border:1px solid var(--j-sea);border-radius:50%;color:var(--j-sea);font-family:var(--j-mono);font-size:11px;letter-spacing:.02em;background:radial-gradient(circle at 35% 30%,rgba(158,220,209,.12),rgba(6,17,22,.4))}
+.j-brand-strong,.j-brand em{display:block;font-family:var(--j-serif);font-size:19px;font-weight:500;font-style:normal;letter-spacing:.03em;line-height:1}
+.j-brand em{font-size:12px;color:var(--j-sea);letter-spacing:.16em;text-transform:uppercase}
+.j-nav{margin-left:auto;display:flex;align-items:center;gap:30px}
+.j-nav a{color:var(--j-muted);font:11px var(--j-mono);letter-spacing:.12em;text-decoration:none;text-transform:uppercase;transition:color 500ms cubic-bezier(.32,.72,0,1)}
+.j-nav a:hover{color:var(--j-sea)}
+.j-nav .j-nav-now{color:var(--j-sun-hi);pointer-events:none}
+.j-note-tag{display:inline-flex;align-items:center;gap:8px;font:10px var(--j-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--j-muted)}
+.j-note-tag i{width:6px;height:6px;border-radius:50%;background:var(--j-sun);animation:jPulse 3s ease-in-out infinite}
+@keyframes jPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* =====================================================================
+   Shell — content column under the fixed header (safe offset)
+   ===================================================================== */
+.j-main{position:relative;z-index:5;width:var(--j-gutter);margin:0 auto;padding:150px 0 0}
+.j-hero{padding-top:16px}
+
+.j-foot{display:flex;align-items:center;gap:16px;margin:0 0 26px;color:var(--j-muted);font:10px var(--j-mono);letter-spacing:.16em;text-transform:uppercase}
+.j-foot .j-num{color:var(--j-sun-hi)}
+.j-foot .j-foot-line{flex:1;height:1px;max-width:90px;background:linear-gradient(90deg,var(--j-line),transparent)}
+
+.j-title{font-family:var(--j-serif);font-weight:300;font-size:clamp(58px,9vw,132px);line-height:.98;letter-spacing:-.02em;margin:0 0 30px;color:var(--j-foam)}
+.j-title i{font-style:italic;color:var(--j-sea)}
+.j-lede{max-width:460px;margin:0;color:var(--j-muted);font-size:15px;line-height:1.7}
+
+/* =====================================================================
+   The index — the article listing, a ledger of field notes
+   ===================================================================== */
+.j-index{margin-top:70px;border-top:1px solid var(--j-line)}
+.j-note{position:relative;border-bottom:1px solid var(--j-line)}
+.j-note-link{display:grid;grid-template-columns:170px 1fr;gap:30px;padding:44px 8px 44px 0;color:inherit;text-decoration:none}
+.j-note-meta{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.j-note-index{font:10px var(--j-mono);letter-spacing:.16em;color:var(--j-sun-hi)}
+.j-note-date{font:11px var(--j-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--j-muted)}
+.j-note-body{min-width:0}
+.j-note-body h2{font-family:var(--j-serif);font-weight:400;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-.01em;margin:0 0 14px;color:var(--j-foam);transition:color 500ms cubic-bezier(.32,.72,0,1)}
+.j-note-summary{margin:0 0 18px;max-width:640px;color:var(--j-muted);font-size:15px;line-height:1.7}
+.j-note-read{display:inline-flex;align-items:center;gap:8px;font:10px var(--j-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--j-sea)}
+.j-note-read span{transition:transform 500ms cubic-bezier(.32,.72,0,1)}
+.j-note-link:hover .j-note-body h2{color:var(--j-sun-hi)}
+.j-note-link:hover .j-note-read span{transform:translate(3px,-3px)}
+.j-note-link:hover .j-note-index{color:var(--j-sun)}
+.j-note::before{content:'';position:absolute;left:-8px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--j-sun-hi),transparent);opacity:0;transition:opacity 500ms cubic-bezier(.32,.72,0,1)}
+.j-note:hover::before{opacity:1}
+
+.j-empty{padding:90px 0;border-bottom:1px solid var(--j-line)}
+.j-empty h2{font-family:var(--j-serif);font-weight:400;font-size:44px;margin:0 0 18px;color:var(--j-foam)}
+.j-empty p{max-width:560px;color:var(--j-muted);font-size:15px;line-height:1.7;margin:0}
+
+/* =====================================================================
+   The post — a single field note
+   ===================================================================== */
+.j-post{max-width:720px;margin:0 auto;padding:40px 0 0}
+.j-post-back{display:inline-flex;align-items:center;gap:8px;color:var(--j-muted);font:10px var(--j-mono);letter-spacing:.16em;text-decoration:none;text-transform:uppercase;margin-bottom:60px;transition:color 500ms cubic-bezier(.32,.72,0,1)}
+.j-post-back:hover{color:var(--j-sea)}
+.j-post-head{padding-bottom:54px;border-bottom:1px solid var(--j-line);margin-bottom:56px}
+.j-post-title{font-family:var(--j-serif);font-weight:300;font-size:clamp(40px,6vw,72px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;color:var(--j-foam)}
+.j-post-title i{font-style:italic;color:var(--j-sea)}
+.j-post-by{display:flex;align-items:center;gap:12px;margin:0;color:var(--j-muted);font:10px var(--j-mono);letter-spacing:.14em;text-transform:uppercase}
+.j-post-by::before{content:'';width:26px;height:1px;background:var(--j-sun-hi)}
+.j-post-body{font-family:var(--j-serif);font-size:20px;line-height:1.78;color:#d9e6e1}
+.j-post-body p{margin:0 0 1.5em}
+.j-post-body>p:first-of-type::first-letter{float:left;font-family:var(--j-serif);font-size:66px;line-height:.82;padding:8px 10px 0 0;color:var(--j-sea)}
+.j-post-body h1,.j-post-body h2,.j-post-body h3,.j-post-body h4{font-family:var(--j-sans);font-weight:600;color:var(--j-foam);letter-spacing:-.01em;line-height:1.2}
+.j-post-body h2{font-size:26px;margin:1.8em 0 .6em}
+.j-post-body h3{font-size:20px;margin:1.6em 0 .5em}
+.j-post-body h4{font-size:17px;margin:1.5em 0 .5em}
+.j-post-body a{color:var(--j-sea);text-decoration:underline;text-underline-offset:3px}
+.j-post-body a:hover{color:var(--j-sun-hi)}
+.j-post-body ul,.j-post-body ol{margin:.6em 0 1.5em;padding-left:1.2em}
+.j-post-body li{margin:.35em 0}
+.j-post-body blockquote{margin:1.8em 0;padding:8px 0 8px 28px;border-left:1px solid var(--j-sun-hi);color:#cfe3dd;font-style:italic;font-size:22px}
+.j-post-body code{background:rgba(158,220,209,.12);color:var(--j-sea);padding:2px 7px;border-radius:6px;font-family:var(--j-mono);font-size:.82em}
+.j-post-body pre{background:var(--j-panel);border:1px solid var(--j-line);border-radius:14px;padding:20px;overflow-x:auto;margin:0 0 1.5em}
+.j-post-body pre code{background:none;color:var(--j-foam);padding:0;border-radius:0}
+.j-post-body img{max-width:100%;height:auto;border-radius:14px;border:1px solid var(--j-line);margin:1em 0}
+.j-post-body hr{border:0;height:1px;background:var(--j-line);margin:2.4em 0}
+.j-post-end{margin-top:70px;padding:40px 0;border-top:1px solid var(--j-line)}
+.j-post-end p{margin:0;color:var(--j-muted);font-size:14px;line-height:1.7}
+.j-post-end a{color:var(--j-sea);text-decoration:none;font-weight:600}
+.j-post-end a:hover{color:var(--j-sun-hi)}
+
+/* =====================================================================
+   Footer
+   ===================================================================== */
+.j-footer{position:relative;z-index:5;width:var(--j-gutter);margin:120px auto 0;padding:40px 0 60px;border-top:1px solid var(--j-line);display:flex;flex-wrap:wrap;gap:18px 40px;align-items:baseline}
+.j-footer-back{color:var(--j-sea);font:500 13px var(--j-sans);text-decoration:none;letter-spacing:.02em}
+.j-footer-back:hover{color:var(--j-sun-hi)}
+.j-footer-note{margin:0 0 0 auto;color:var(--j-muted);font-size:12px;line-height:1.6;text-align:right}
+.j-footer-note span{display:block;margin-top:4px;color:var(--j-sun-hi);font:9px var(--j-mono);letter-spacing:.14em;text-transform:uppercase}
+
+/* =====================================================================
+   Reveal — a slow settle, like surfacing
+   ===================================================================== */
+/* reveal is gated behind `.js` so no-JS viewers always see the copy */
+.js .j-rv{opacity:0;transform:translateY(18px);transition:opacity 1s cubic-bezier(.32,.72,0,1),transform 1s cubic-bezier(.32,.72,0,1)}
+.js .j-rv.j-in{opacity:1;transform:none}
+
+/* =====================================================================
+   Responsive
+   ===================================================================== */
+@media(max-width:800px){
+  :root{--j-gutter:calc(100% - 24px)}
+  .j-header{top:12px;padding:11px 12px 11px 14px;gap:14px}
+  .j-brand em{display:none}
+  .j-nav{gap:16px}
+  .j-nav a{font-size:10px}
+  .j-note-tag{display:none}
+  .j-main{padding-top:118px}
+  .j-hero{padding-top:8px}
+  .j-title{font-size:clamp(52px,11vw,72px)}
+  .j-index{margin-top:48px}
+  .j-note-link{grid-template-columns:1fr;gap:14px;padding:30px 0}
+  .j-note-meta{flex-direction:row;align-items:center;gap:14px}
+  .j-note-index{order:2}
+  .j-note-date{order:1}
+  .j-post{padding-top:16px}
+  .j-post-back{margin-bottom:40px}
+  .j-post-head{padding-bottom:40px;margin-bottom:40px}
+  .j-post-title{font-size:clamp(36px,9vw,52px)}
+  .j-post-body{font-size:19px;line-height:1.7}
+  .j-footer{margin-top:80px;flex-direction:column;align-items:flex-start;gap:16px}
+  .j-footer-note{margin:0;text-align:left}
+}
+
+/* =====================================================================
+   Reduced motion — everything stays legible, the drift drops
+   ===================================================================== */
+@media(prefers-reduced-motion:reduce){
+  .j-surface,.j-caustic{animation:none}
+  .j-note-tag i{animation:none}
+  html{scroll-behavior:auto}
+  .js .j-rv{opacity:1;transform:none;transition:none}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}

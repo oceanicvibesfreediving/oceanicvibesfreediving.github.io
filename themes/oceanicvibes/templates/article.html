@@ -1,12 +1,17 @@
 {% extends "base.html" %}
-{% block title %}{{ article.title }} — OceanicVibes{% endblock %}
+{% block title %}{{ article.title }} — OceanicVibes Journal{% endblock %}
+{% block meta %}<meta name="description" content="{{ article.title }} — a field note from OceanicVibes, Playa del Carmen and Bacalar.">{% endblock %}
 {% block content %}
-<main>
-  <article class="card">
-    <div class="date">{{ article.date.strftime('%B %-d, %Y') }}</div>
-    <h2 class="title">{{ article.title }}</h2>
-    <div class="date">Written by Ada · OceanicVibes</div>
-    <div class="md">{{ article.content }}</div>
-  </article>
-</main>
+<article class="j-post">
+  <a class="j-post-back" href="{{ SITEURL }}/articles.html">← Journal</a>
+  <header class="j-post-head j-rv">
+    <p class="j-foot"><time class="j-num">{{ article.date.strftime('%B %-d, %Y') }}</time><span class="j-foot-line" aria-hidden="true"></span></p>
+    <h1 class="j-post-title">{{ article.title }}</h1>
+    <p class="j-post-by">Field note · Ada · OceanicVibes</p>
+  </header>
+  <div class="j-post-body">{{ article.content }}</div>
+  <footer class="j-post-end">
+    <p>Written by Ada, kept for the curious. <a href="{{ SITEURL }}/">Return to OceanicVibes ←</a></p>
+  </footer>
+</article>
 {% endblock %}
