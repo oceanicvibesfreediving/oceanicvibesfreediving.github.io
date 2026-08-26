@@ -4,31 +4,54 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}OceanicVibes{% endblock %}</title>
-  <style>
-    :root{--bg:#f6f9fb;--card:#fff;--ink:#12303e;--dim:#5b7684;--accent:#0a7ea4}
-    body{margin:0;font:16px/1.65 Georgia,'Times New Roman',serif;background:var(--bg);color:var(--ink)}
-    header{background:#062c3d;color:#e8f4f8;padding:48px 20px;text-align:center}
-    header h1{margin:0 0 6px;font-size:30px;font-weight:normal}
-    header p{margin:0;color:#9cc3d4}
-    main{max-width:720px;margin:32px auto;padding:0 20px}
-    .card{background:var(--card);border-radius:10px;padding:26px 28px;margin-bottom:18px;box-shadow:0 1px 4px rgba(6,44,61,.08)}
-    .date{color:var(--dim);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-    h2.title{margin:0 0 12px;font-size:22px}
-    .md h2{font-size:19px;margin:1.2em 0 .4em}.md h3{font-size:17px;margin:1.1em 0 .35em}
-    .md p{margin:.7em 0}.md ul,.md ol{margin:.6em 0 .6em 1.3em}.md li{margin:.25em 0}
-    .md code{background:#eef3f6;padding:1px 5px;border-radius:4px;font-size:.9em}
-    footer{text-align:center;color:var(--dim);padding:30px 0 40px;font-size:14px}
-    a{color:var(--accent)}
-    .ada-mark{display:inline-block;margin-bottom:10px;color:#7fc0d4;font:11px/1.2 Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
-  </style>
+  {% block meta %}{% endblock %}
+  <link rel="icon" type="image/jpeg" href="{{ SITEURL }}/images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/journal.css">
+  <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
-  <header>
-    <span class="ada-mark">Ada · OceanicVibes</span>
-    <h1>Field notes &amp; freediving knowledge</h1>
-    <p>OceanicVibes · Riviera Maya</p>
+  <a class="j-skip" href="#main">Skip to the notes</a>
+  <div class="j-surface" aria-hidden="true"></div>
+  <div class="j-grain" aria-hidden="true"></div>
+  <div class="j-caustic" aria-hidden="true"></div>
+
+  <header class="j-header">
+    <a class="j-brand" href="{{ SITEURL }}/" aria-label="OceanicVibes homepage">
+      <span class="j-brand-mark">OV</span>
+      <span class="j-brand-strong">Oceanic<em>Vibes</em></span>
+    </a>
+    <span class="j-note-tag"><i aria-hidden="true"></i>Field notes</span>
+    <nav class="j-nav" aria-label="Journal navigation">
+      <a class="{% block nav_now %}{% endblock %}" href="{{ SITEURL }}/articles.html">Journal</a>
+      <a href="{{ SITEURL }}/">← Home</a>
+    </nav>
   </header>
-  {% block content %}{% endblock %}
-  <footer>Written by Ada, maintained with OceanicVibes · <a href="/">← Back to OceanicVibes</a></footer>
+
+  <main id="main" class="j-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="j-footer">
+    <a class="j-footer-back" href="{{ SITEURL }}/">← Return to OceanicVibes</a>
+    <p class="j-footer-note">Field notes written by Ada.<span>Playa del Carmen · Bacalar · Riviera Maya</span></p>
+  </footer>
+
+  <script>
+    (function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+      var items = document.querySelectorAll('.j-rv');
+      if (!('IntersectionObserver' in window)) { items.forEach(function(el){ el.classList.add('j-in'); }); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) { entry.target.classList.add('j-in'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
