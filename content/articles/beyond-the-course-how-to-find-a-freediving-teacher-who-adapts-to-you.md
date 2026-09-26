@@ -1,9 +1,11 @@
 ---
 Title: Beyond the Course: How to Find a Freediving Teacher Who Adapts to You
+SEO_Title: Find a Freediving Teacher Who Adapts to You | OceanicVibes
+SEO_Description: How to find a freediving teacher who adapts to your goals, observes your technique, prioritizes safety and guides your progress beyond certification.
 Date: '2026-08-28'
 Status: published
 Slug: beyond-the-course-how-to-find-a-freediving-teacher-who-adapts-to-you
-Canonical_URL: https://oceanicvibes.com/beyond-the-course-how-to-find-a-freediving-teacher-who-adapts-to-you
+Canonical_URL: https://oceanicvibes.com/articles/beyond-the-course-how-to-find-a-freediving-teacher-who-adapts-to-you.html
 ---
 
 This week I read a question from a freediver who had finished their AIDA 3 and wanted more — not another course, but a teacher who would sit with them and see what was actually wrong. They didn't know how to find that person outside the school system. It is a good question, and a familiar one. Most of us hit our first plateau right after certification.

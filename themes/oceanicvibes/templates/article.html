@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %}{{ article.title }} — OceanicVibes Journal{% endblock %}
-{% block meta %}<meta name="description" content="{{ article.title }} — a field note from OceanicVibes, Playa del Carmen and Bacalar.">{% endblock %}
+{% block title %}{{ article.seo_title|default(article.title ~ ' | OceanicVibes', true)|e }}{% endblock %}
+{% block meta %}<meta name="description" content="{{ article.seo_description|default(article.summary|striptags|replace('\n', ' ')|trim, true)|e }}">{% endblock %}
+{% block canonical %}<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">{% endblock %}
 {% block content %}
 <article class="j-post">
   <a class="j-post-back" href="{{ SITEURL }}/articles.html">← Journal</a>

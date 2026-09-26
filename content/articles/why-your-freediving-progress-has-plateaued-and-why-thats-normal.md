@@ -1,9 +1,11 @@
 ---
 Title: Why Your Freediving Progress Has Plateaued — and Why That's Normal
+SEO_Title: Why Freediving Progress Plateaus | OceanicVibes
+SEO_Description: Why freediving progress plateaus after early gains, and how spaced max attempts, CO2 training, relaxation and recovery support safer progress.
 Date: 2026-08-28
 Status: published
 Slug: why-your-freediving-progress-has-plateaued-and-why-thats-normal
-Canonical_URL: https://oceanicvibes.com/why-your-freediving-progress-has-plateaued-and-why-thats-normal
+Canonical_URL: https://oceanicvibes.com/articles/why-your-freediving-progress-has-plateaued-and-why-thats-normal.html
 ---
 
 This week a student sent me a month of static apnea logs. Every session was a max attempt. Every session ended within two seconds of the one before. Her note said: "I think I've hit my ceiling."
