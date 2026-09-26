@@ -1,4 +1,18 @@
-const defaultContent={heroEyebrow:'Riviera Maya · Mexico',heroTitle:'Master|your depth.',heroSubtitle:'Elite freediving instruction, advanced equalization, and depth training for people who want to feel at home beneath the surface.',aboutLead:'At OceanicVibes, we train athletes, watermen, and dedicated individuals to safely unlock their true aquatic potential.',aboutBody:'From Frenzel and Mouthfill equalization to CO2 tolerance and deep relaxation, every session is built around calm, measurable progression and uncompromising safety.',footerCopy:'Private instruction and depth training in the waters of the Yucatan.',footerEmail:'train@oceanicvibes.com',instagram:'@_oceanicvibes_',courses:[{date:'Oct 15–17',location:'Playa del Carmen',title:'AIDA 2 Foundation',description:'Build a bulletproof foundation with Frenzel equalization, duck dives, breathing techniques, and safety protocols up to 20 meters.'},{date:'Nov 02–05',location:'Bacalar',title:'Stillness & Technique',description:'A focused Bacalar weekend for breathwork, relaxation, body position, and the calm precision that makes depth feel effortless.'},{date:'Nov 18–22',location:'Playa del Carmen',title:'Advanced Depth',description:'Line training in Free Immersion and Constant Weight, with advanced equalization and coaching through your next depth barrier.'}]};
+const defaultContent={
+  heroEyebrow:'Playa del Carmen - Tulum - Bacalar',
+  heroTitle:'Master|your depth',
+  heroSubtitle:'Private performance coaching for dedicated freedivers — Advanced deep equalization, depth adaptation, physical & mental conditioning, and technical development for performance dives',
+  aboutLead:'At OceanicVibes, we develop dedicated freedivers through precision coaching in technique, equalization, depth adaptation, and physical and mental performance.',
+  aboutBody:'Deep advanced equalization, Co2/O2 efficiency, relaxation, physical & mental preparation combined with technical development for performance dives.',
+  footerCopy:'Private coaching in the cenotes of Yucatan, México.',
+  footerEmail:'peter@oceanicvibes.com',
+  instagram:'@_oceanicvibes_',
+  courses:[
+    {date:'Oct 15–17',location:'Playa del Carmen',title:'AIDA 2 Foundation',description:'Build a bulletproof foundation with Frenzel equalization, duck dives, breathing techniques, and safety protocols up to 20 meters.'},
+    {date:'Nov 02–05',location:'Bacalar',title:'Stillness & Technique',description:'A focused Bacalar weekend for breathwork, relaxation, body position, and the calm precision that makes depth feel effortless.'},
+    {date:'Nov 18–22',location:'Playa del Carmen',title:'Advanced Depth',description:'Line training in Free Immersion and Constant Weight, with advanced equalization and coaching through your next depth barrier.'}
+  ]
+};
 function getContent(){return fetch('content.json',{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject()).catch(()=>defaultContent)}
 function escapeHtml(value){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
 
@@ -149,7 +163,7 @@ if(gsapReady){
   getContent().then(content=>{
     const put=(id,value)=>{const element=document.getElementById(id);if(element)element.textContent=value};
     document.getElementById('heroTitle').innerHTML=content.heroTitle.split('|').map((part,index)=>index?`<i>${escapeHtml(part)}</i>`:escapeHtml(part)).join('<br>');
-    put('heroSubtitle',content.heroSubtitle);put('aboutLead',content.aboutLead);put('aboutBody',content.aboutBody);
+    put('heroEyebrow',content.heroEyebrow);put('heroSubtitle',content.heroSubtitle);put('aboutLead',content.aboutLead);put('aboutBody',content.aboutBody);
     put('footerCopy',content.footerCopy);put('footerEmail',content.footerEmail);
     document.getElementById('footerEmail').href=`mailto:${encodeURIComponent(content.footerEmail)}`;
     put('instagramLink',content.instagram);
@@ -176,7 +190,7 @@ if(gsapReady){
   getContent().then(content=>{
     const put=(id,value)=>{const element=document.getElementById(id);if(element)element.textContent=value};
     document.getElementById('heroTitle').innerHTML=content.heroTitle.split('|').map((part,index)=>index?`<i>${escapeHtml(part)}</i>`:escapeHtml(part)).join('<br>');
-    put('heroSubtitle',content.heroSubtitle);put('aboutLead',content.aboutLead);put('aboutBody',content.aboutBody);
+    put('heroEyebrow',content.heroEyebrow);put('heroSubtitle',content.heroSubtitle);put('aboutLead',content.aboutLead);put('aboutBody',content.aboutBody);
     put('footerCopy',content.footerCopy);put('footerEmail',content.footerEmail);
     document.getElementById('footerEmail').href=`mailto:${encodeURIComponent(content.footerEmail)}`;
     put('instagramLink',content.instagram);
