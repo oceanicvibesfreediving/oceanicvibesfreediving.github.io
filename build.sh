@@ -9,7 +9,7 @@ mkdir -p output
 for path in index.html styles.css app.js admin.html admin.css admin.js content.json; do
   if [ -e "$path" ]; then cp -R "$path" output/; fi
 done
-for directory in images; do
+for directory in images vendor; do
   if [ -d "$directory" ]; then cp -R "$directory" output/; fi
 done
 
