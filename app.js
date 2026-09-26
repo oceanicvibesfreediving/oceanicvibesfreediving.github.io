@@ -2,7 +2,7 @@ const defaultContent={
   heroEyebrow:'Playa del Carmen - Tulum - Bacalar',
   heroTitle:'Master|your depth',
   heroSubtitle:'Private performance coaching for dedicated freedivers — Advanced deep equalization, depth adaptation, physical & mental conditioning, and technical development for performance dives',
-  aboutLead:'At OceanicVibes, we develop dedicated freedivers through precision coaching in technique, equalization, depth adaptation, and physical and mental performance.',
+  aboutLead:'At OceanicVibes, we develop dedicated freedivers through precision coaching in technique, equalization, depth adaptation, physical and mental performance.',
   aboutBody:'Deep advanced equalization, Co2/O2 efficiency, relaxation, physical & mental preparation combined with technical development for performance dives.',
   footerCopy:'Private coaching in the cenotes of Yucatan, México.',
   footerEmail:'peter@oceanicvibes.com',
